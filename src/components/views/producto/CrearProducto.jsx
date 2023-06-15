@@ -1,4 +1,4 @@
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, FloatingLabel } from "react-bootstrap";
 
 const CrearProducto = () => {
   
@@ -44,6 +44,12 @@ const CrearProducto = () => {
           </Form.Select>
        
         </Form.Group>
+        <Form.Label>Descripción*</Form.Label>
+        <Form.Control
+          as="textarea"
+          placeholder="Leave a comment here"
+          style={{ height: '100px' }}
+        />
         <Button variant="primary" type="submit">
           Guardar
         </Button>
