@@ -7,6 +7,29 @@ PUT / PATCH permiten modificar elementos (PUT permite modificar todo un elemento
 DELETE 
 */
 //logica del login
-export const login = ()=>{
-    console.log(URL_usuario)
-}
+export const login = async (usuario) => {
+  try {
+    //pedir a la api la lista de usuarios, porque json server no tiene una logica que haga el login
+    const respuesta = await fetch(URL_usuario);
+    const listaUsuarios = await respuesta.json(); // con .json lo que hao es extraer el body transformado a un formato que js sabe manejar
+    //buscar si en la lista de usuarios existe el mail
+    const usuarioBuscado = listaUsuarios.find(
+      (itemUsuario) => itemUsuario.email === usuario.email
+    );
+    if (usuarioBuscado) {
+      //si se encuentra el mail
+      if (usuarioBuscado.password === usuario.password) {
+        return usuarioBuscado;
+      } else {
+        console.log("El password es incorrecto");
+        return null;
+      }
+    } else {
+      //no se encontro el mail
+      console.log("el mail no existe");
+      return null;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};

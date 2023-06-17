@@ -7,13 +7,18 @@ const Login = () => {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
+    reset
   } = useForm();
 
-  login();
-
   const onSudmit = (usuario) => {
-    console.log(usuario);
+    login(usuario).then((respuesta)=>{
+      console.log(respuesta)
+      if(respuesta){
+      //guardar usuario
+      }else{
+        //mostrar mensaje de error
+      }
+        });
   };
 
   return (
